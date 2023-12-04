@@ -51,6 +51,7 @@ def main():
     print("Number of times out of 100000 rolls that dice were the same without rerolls:", timesAllFive)
 
     #part 2 answers
+    timesAllFive = 0
     dice = rollDice(numOfDice, sidesOfDice)
     for i in range(100000):
         if allSame(dice):
