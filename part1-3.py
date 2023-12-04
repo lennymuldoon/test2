@@ -10,6 +10,8 @@ import random
 def probabilityOfDiceNoReroll(amountOfDice, sides):
     return (1/(sides ** amountOfDice)) * sides
 
+def probabilityOfDiceReroll(amountOfDice, sides):
+    return (1/((sides ** amountOfDice)** 2)) * sides
 
 #rolls a number of dice
 def rollDice(amountOfDice, sides):
@@ -42,16 +44,17 @@ def main():
     sidesOfDice = 6
     timesAllFive = 0
     #part 1 answers
-    print("The probability of rolling the same number on", numOfDice, sidesOfDice, "sided dice is:", probabilityOfDiceNoReroll(numOfDice, sidesOfDice))
+    print("The probability of rolling the same number on", numOfDice, sidesOfDice, "sided dice with no reroll is:", probabilityOfDiceNoReroll(numOfDice, sidesOfDice))
     dice = rollDice(numOfDice, sidesOfDice)
     for i in range(100000):
         if allSame(dice):
             timesAllFive += 1
         dice = rollDice(numOfDice, sidesOfDice)
 
-    print("Number of times out of 100000 rolls that dice were the same without rerolls:", timesAllFive)
+    print("Number of times out of 100000 rolls that dice were the same without reroll:", timesAllFive)
 
     #part 2 answers
+    print("The probability of rolling the same number on", numOfDice, sidesOfDice, "sided dice with reroll is:", probabilityOfDiceReroll(numOfDice, sidesOfDice))
     timesAllFive = 0
     dice = rollDice(numOfDice, sidesOfDice)
     for i in range(100000):
@@ -67,16 +70,15 @@ def main():
         dice = rollDice(numOfDice, sidesOfDice)
     print("Number of times out of 100000 rolls that dice were the same with reroll:", timesAllFive)
 
-    #part 3 answers
-    selection = input("Choose door 1, 2, or 3")
-    door = random.randint(0,1)
-    print(door)
-    swap = int(input("I reveal one door and it does not have the prize, do you stay with your door or swap? (1 to stay, 2 to swap)"))
-    if swap == 1 and door == 1:
-        print("You win!")
-    elif swap == 2 and door == 0:
-        print("You win!")
-    else:
-        print("You lose!")
+    #part 3 answers    
+    swap = 1
+    print("Testing if you always swap the door")
+    for i in range (100000):
+        door = random.randint(0,1)
+        if swap == 1 and door == 1:
+            print("You win!")
+        else:
+            print("You lose!")
+    
 
 main()
