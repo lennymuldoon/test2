@@ -14,8 +14,13 @@ timesAllFive = 0
 def probabilityOfDiceNoReroll(amountOfDice, sides):
     return ((1/sides) ** amountOfDice) * sides
 
+#rolls a number of dice
 def rollDice(amountOfDice):
     return [random.randint(1, 6) for i in range(amountOfDice)]
+
+#returns true if all dice are the same
+def allSame(diceRolls):
+    return all(d == diceRolls[0] for d in diceRolls)
 
 
 dice = rollDice(numOfDice)
