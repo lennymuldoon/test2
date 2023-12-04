@@ -37,7 +37,8 @@ def findHighestCount(diceRolls):
                 count += 1
         if count > highestCount:
             highestCount = num
-    return num
+    return num 
+
 
 def main():
     numOfDice = 5
@@ -70,25 +71,24 @@ def main():
         dice = rollDice(numOfDice, sidesOfDice)
     print("Number of times out of 100000 rolls that dice were the same with reroll:", timesAllFive)
 
-    #part 3 answers    
-    swap = 1 #1 for true
-    timesWon = 0
-    print("Testing if you always swap the door")
-    for i in range (100000):
-        door = random.randint(1,3)
-        doorSwap = random.randint(1,2)
-        if swap == 1 and door == 1 and doorSwap == 1:
-            timesWon += 1
-    print("Times won when always swap door", timesWon)
-    
-    timesWon = 0
-    swap = 0
-    print("Testing if you always stay with chosen door")
-    for i in range (100000):
-        door = random.randint(1,3)
-        doorSwap = random.randint(1,2)
-        if swap == 0 and door == 1 and doorSwap == 1:
-            timesWon += 1
+    #part 3 answers
+    stayWins = 0
+    switchWins = 0
 
-    print("Times won when you stay with chosen door", timesWon)
+    for i in range(100000):
+        doors = [0, 0, 0] 
+        prizePosition = random.randint(0, 2)
+        doors[prizePosition] = 1  # 1 represents the prize
+        contestantChoice = random.randint(0, 2)
+        doorsOpened = [i for i in range(3) if i != contestantChoice and doors[i] == 0]
+        montyOpens = random.choice(doorsOpened)
+        switchChoice = next(i for i in range(3) if i != contestantChoice and i != montyOpens)
+        stayWins += doors[contestantChoice]
+        switchWins += doors[switchChoice]
+
+    stayWinPercentage = stayWins / 100000 * 100
+    switchWinPercentage = switchWins / 100000 * 100
+    print("Win percentage if staying:", stayWinPercentage)
+    print("Win percentage if switching:", switchWinPercentage)
+
 main()
