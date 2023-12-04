@@ -8,7 +8,8 @@ import random
 
 #calculates the probability of rolling the same number on rolling a number of sided dice (in this case 5 6 sided dice) without rerolling
 def probabilityOfDiceNoReroll(amountOfDice, sides):
-    return ((1/sides) ** amountOfDice) * sides
+    return (1/(sides ** amountOfDice)) * sides
+
 
 #rolls a number of dice
 def rollDice(amountOfDice, sides):
