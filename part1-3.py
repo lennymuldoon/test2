@@ -14,10 +14,14 @@ def probabilityOfDiceNoReroll(amountOfDice, sides):
 def rollDice(amountOfDice, sides):
     return [random.randint(1, sides) for i in range(amountOfDice)]
 
+def rerollDie(die, sides):
+    die = random.randint(1, sides)
+
 #returns true if all dice are the same
 def allSame(diceRolls):
     return all(d == diceRolls[0] for d in diceRolls)
 
+#returns number with highest count in rolls
 def findHighestCount(diceRolls):
     num = 0
     count = 0
@@ -44,13 +48,22 @@ def main():
             timesAllFive += 1
         dice = rollDice(numOfDice, sidesOfDice)
 
-    print("Number of times out of 100000 rolls that dice were the same:", timesAllFive)
-    print(dice)
-    print(findHighestCount(dice))
+    print("Number of times out of 100000 rolls that dice were the same without rerolls:", timesAllFive)
 
     #part 2 answers
-    #for d in dice:
-
+    dice = rollDice(numOfDice, sidesOfDice)
+    for i in range(100000):
+        if allSame(dice):
+            timesAllFive += 1
+        else:
+            highestNum = findHighestCount(dice)
+            for d in dice:
+                if d != highestNum:
+                    rerollDie(d, sidesOfDice)
+            if allSame(dice):
+                timesAllFive += 1
+        dice = rollDice(numOfDice, sidesOfDice)
+    print("Number of times out of 100000 rolls that dice were the same with reroll:", timesAllFive)
 
 
 main()
