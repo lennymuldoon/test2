@@ -29,4 +29,4 @@ print(dice)
 
 
 
-print("The probability of rolling the same number on ", numOfDice, " ", sidesOfDice, " sided dice is: ", probabilityOfDiceNoReroll(numOfDice, sidesOfDice))
+print("The probability of rolling the same number on", numOfDice, sidesOfDice, "sided dice is:", probabilityOfDiceNoReroll(numOfDice, sidesOfDice))
