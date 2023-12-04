@@ -71,14 +71,24 @@ def main():
     print("Number of times out of 100000 rolls that dice were the same with reroll:", timesAllFive)
 
     #part 3 answers    
-    swap = 1
+    swap = 1 #1 for true
+    timesWon = 0
     print("Testing if you always swap the door")
     for i in range (100000):
-        door = random.randint(0,1)
-        if swap == 1 and door == 1:
-            print("You win!")
-        else:
-            print("You lose!")
+        door = random.randint(1,3)
+        doorSwap = random.randint(1,2)
+        if swap == 1 and door == 1 and doorSwap == 1:
+            timesWon += 1
+    print("Times won when always swap door", timesWon)
     
+    timesWon = 0
+    swap = 0
+    print("Testing if you always stay with chosen door")
+    for i in range (100000):
+        door = random.randint(1,3)
+        doorSwap = random.randint(1,2)
+        if swap == 0 and door == 1 and doorSwap == 1:
+            timesWon += 1
 
+    print("Times won when you stay with chosen door", timesWon)
 main()
