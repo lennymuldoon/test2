@@ -81,8 +81,8 @@ def main():
         doors[prizePosition] = 1  # 1 represents the prize
         contestantChoice = random.randint(0, 2)
         doorsOpened = [i for i in range(3) if i != contestantChoice and doors[i] == 0]
-        montyOpens = random.choice(doorsOpened)
-        switchChoice = next(i for i in range(3) if i != contestantChoice and i != montyOpens)
+        opens = random.choice(doorsOpened)
+        switchChoice = next(i for i in range(3) if i != contestantChoice and i != opens)
         stayWins += doors[contestantChoice]
         switchWins += doors[switchChoice]
 
